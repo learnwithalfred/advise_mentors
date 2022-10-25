@@ -21,7 +21,7 @@
 
 To get a local copy up and running follow these simple example steps.
 
-  > Copy and paste the following commands into your terminal to get everything up and running
+- Copy and paste the following commands into your terminal to get everything up and running
   ```
   git clone https://github.com/learnwithalfred/blog_
   cd blog_
