@@ -4,7 +4,7 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to like_url(@like), notice: "Like was successfully created." }
+        format.html { redirect_to like_url(@like), notice: 'Like was successfully created.' }
         format.json { render :show, status: :created, location: @like }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -13,10 +13,9 @@ class LikesController < ApplicationController
     end
   end
 
-  
-
   private
-    def like_params
-      params.require(:like).permit(:author_id, :post_id)
-    end
+
+  def like_params
+    params.require(:like).permit(:author_id, :post_id)
+  end
 end
