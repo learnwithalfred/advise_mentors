@@ -7,7 +7,7 @@ class Like < ApplicationRecord
   after_save :update_likes_count
   def update_likes_count
     post = self.post
-    post.likes_count += 1
+    post.likes_count = post.likes.count
     post.save
   end
 end
