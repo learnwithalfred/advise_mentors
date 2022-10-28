@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   describe 'post should have valid attributes' do
-    post = FactoryBot.build(:post)
+    user = FactoryBot.create(:user)
+    post = FactoryBot.build(:post, author_id: user.id)
 
     it 'expect post to be valid with valid input filds' do
       expect(post).to be_valid
