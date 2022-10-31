@@ -1,0 +1,42 @@
+<div>
+  <img width="200px" src="<%=@user.photo %>" alt="<%=@user.name %>">
+  <h1><%= @user.name %></h1>
+  <p>
+    Number of post : <%= @user.posts.count %>
+  </p>
+  <h3>Posts</h3>
+  <br><br>
+  <% @user.posts.each do |post| %>
+  <li>
+    <h1>
+      <%= post.title %> by <%= post.user.name %>
+      <br>
+      Comments ( <%= post.comments.count %> ) Likes ( <%= post.likes.count %> )
+      <br><br>
+      <a href="/users/<%=@user.id %>/posts/<%=post.id %>"><b>Read more about this single post</b></a>
+    </h1>
+
+    <br><br>
+    <h1>Post content</h1>
+    <hr>
+    <p>
+      <%= post.text %>
+    </p>
+    <hr><br>
+    <h3>Comments</h3>
+    <hr>
+    <% post.comments.each do |comment| %>
+
+    <div>
+      <p>
+        <%= comment.user.name %> : <%= comment.text %>
+      </p>
+    </div>
+    <% end %>
+    </ul>
+    <hr>
+    <hr><br><br>
+    <hr>
+    <% end %>
+
+</div>
