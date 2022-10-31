@@ -4,7 +4,7 @@ image_num = 0
   User.create!(
     [{
       name: Faker::Name.name,
-      photo: "https://picsum.photos/20#{image_num}@test.com",
+      photo: "https://picsum.photos/20#{image_num}",
       bio: Faker::Lorem.paragraph(sentence_count: 1)
     }])
 end
