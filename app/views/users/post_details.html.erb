@@ -1,0 +1,21 @@
+<div>
+  <h1><%= @post.title %> by <%= @post.user.name %></h1>
+  <h4>
+    Comments ( <%= @post.comments.count %> ) Likes ( <%= @post.likes.count %> )
+  </h4>
+  <br><br>
+  <h1>Post content</h1>
+  <hr>
+  <p>
+    <%= @post.text %>
+  </p>
+  <hr><br><br>
+  <h3>Comments</h3>
+  <hr>
+  <% @post.comments.each do |comment| %>
+  <div>
+    <p>
+      <%= comment.user.name %> : <%= comment.text %>
+    </p>
+    <%end %>
+</div></div>

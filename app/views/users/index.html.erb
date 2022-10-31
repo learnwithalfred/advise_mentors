@@ -3,9 +3,10 @@
   <% @users.each_with_index do |user, index| %>
   <ul>
     <li>
-     <%=index + 1 %> -  Name: <b><%= user.name %> </b> Total post: <b><%= user.post_counter %></b>
+      <img width="200px" src=<%=user.photo %> alt=<%= user.name %> />
+      <%=index + 1 %> - Name: <b><%= user.name %> </b> Total post: <b><%= user.post_counter %></b>
+      <a href="/users/<%=user.id %>">View more</a>
     </li>
   </ul>
-
   <% end %>
 </div>

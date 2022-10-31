@@ -1,24 +1,38 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div>
+  <h1> Name: <%= @user.name %> </h1>
+  <h4>
+    Total post: <%= @user.post_counter %>
+  </h4>
+  <img width="200px" src=<%=@user.photo %> alt=<%= @user.name %> />
 
-    <h1>3 recent posts</h1>
-    <%=@posts.each do |post| %>
-      <div class="bg-white shadow-md rounded-lg px-4 py-6 mb-4">
-       <li><%= post.title %></li>
-      </div>
-    <% end %>
+  <h3>Bio</h3>
+  <p>
+    <%= @user.bio %>
+  </p>
+  <hr>
+  <h1>Post</h1>
+  <hr>
+  <%@posts.each_with_index do |post, index| %>
+  <div>
+    <li>
+      <%=index +1 %> - <%= post.title %>
+      <p>
+        Post Content: <%= post.text %>
+        <a href="/posts/<%=post.id %>">View more</a>
 
+      </p>
 
-
-    <%= render @user %>
-
-    <%= link_to 'Edit this user', edit_user_path(@user), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this user', user_path(@user), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to 'Back to users', users_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    </li>
   </div>
+  <hr>
+  <% end %>
+  <br>
+  <br>
+  <a href="/users/<%=@user.id%>/posts">
+    See all post from this user
+  </a>
+  <br>
+  <br>
+  <br>
+  <%= link_to "See all post in db", posts_path %>
 </div>
