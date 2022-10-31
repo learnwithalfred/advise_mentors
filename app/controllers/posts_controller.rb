@@ -9,6 +9,4 @@ class PostsController < ApplicationController
     @likes = Post.find(params[:id]).likes
     @comments = Post.find(params[:id]).comments
   end
-
-
 end

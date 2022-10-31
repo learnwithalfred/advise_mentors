@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = User.find(params[:id]).posts
     @recent_posts = @user.recent_posts
-  end  
-  
-  def posts 
+  end
+
+  def posts
     @user = User.find(params[:id])
     @posts = User.find(params[:id]).posts
   end
@@ -18,5 +18,4 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.find(params[:post_id])
   end
-
 end
