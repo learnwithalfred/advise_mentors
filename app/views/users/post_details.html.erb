@@ -1,11 +1,8 @@
 <div>
-  <h1>
-    <%= @post.title %> by <%= @post.user.name %>
-    <br>
-    Comments ( <%= @post.comments.count %> )
-    Likes ( <%= @post.likes.count %> )
-  </h1>
-
+  <h1><%= @post.title %> by <%= @post.user.name %></h1>
+  <h4>
+    Comments ( <%= @post.comments.count %> ) Likes ( <%= @post.likes.count %> )
+  </h4>
   <br><br>
   <h1>Post content</h1>
   <hr>
@@ -20,7 +17,5 @@
     <p>
       <%= comment.user.name %> : <%= comment.text %>
     </p>
-  </div>
-  <% end %>
-  <hr>
-</div>
+    <%end %>
+</div></div>
