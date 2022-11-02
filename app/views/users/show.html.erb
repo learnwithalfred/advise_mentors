@@ -4,57 +4,58 @@
     <h1 class="m-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">
       Users Details page
     </h1>
-
-
- <div class="flex items-center">
-        <div class="flex-shrink-0">
-          <img width="100px" src=<%=user.photo %> alt=<%= user.name %> class="max-w-xs h-auto" />
-        </div>
-        <div class="flex-1 min-w-0 pl-4">
-          <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-            Name: <b><%= user.name %>
-          </p>
-          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-            <a href="/users/<%=user.id %>">View more</a>
-          </p>
-        </div>
-        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-          <a href="/users/<%=user.id %>"> Number of Post: <b><%= user.post_counter %></b></a>
-        </div>
+    <div
+      class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+        src="<%=@user.photo %>" alt="">
+      <div class="flex flex-col justify-between p-4 leading-normal">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: <b><%=@user.name %></h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bio: <%= @user.bio %></p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of Post: <%= @user.post_counter %></p>
       </div>
+    </div>
+
+    <h1 class="m-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900">
+
+      Posts</h1>
 
 
 
-  <h1> Name: <%= @user.name %> </h1>
-  <h4>
-    Total post: <%= @user.post_counter %>
-  </h4>
-  <img width="200px" src=<%=@user.photo %> alt=<%= @user.name %> />
 
-  <h3>Bio</h3>
-  <p>
-    <%= @user.bio %>
-  </p>
-  <hr>
-  <h1>Post</h1>
-  <hr>
-  <%@posts.each_with_index do |post, index| %>
-  <div>
-    <li>
-      <%=index +1 %> - <%= post.title %>
-      <p>
-        Post Content: <%= post.text %>
 
-      </p>
 
-    </li>
+    <%@posts.each_with_index do |post, index| %>
+
+    <div class="p-4 my-4  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <a href="#">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= post.text %></p>
+      <a href="/users/<%=@user.id %>/posts/<%=post.id%>"
+        class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Read more
+        <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </a>
+    </div>
+
+    <% end %>
+
+    <a href="/users/<%=@user.id%>/posts"
+      class=" my-8 inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+      See all post from this user
+      <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
+
+    </a>
+    <br>
   </div>
-  <hr>
-  <% end %>
-  <br>
-  <br>
-  <a href="/users/<%=@user.id%>/posts">
-    See all post from this user
-  </a>
-  <br>
-</div></div>
+</div>
