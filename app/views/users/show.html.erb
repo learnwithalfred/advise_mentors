@@ -1,5 +1,30 @@
-<div>
-  <h1>Users Details page</h1>
+<div class="flex  w-screen items-center justify-center mx-9 px-4 py-4 sm:px-6 lg:px-8">
+
+  <div class=" w-2/4">
+    <h1 class="m-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">
+      Users Details page
+    </h1>
+
+
+ <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <img width="100px" src=<%=user.photo %> alt=<%= user.name %> class="max-w-xs h-auto" />
+        </div>
+        <div class="flex-1 min-w-0 pl-4">
+          <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+            Name: <b><%= user.name %>
+          </p>
+          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+            <a href="/users/<%=user.id %>">View more</a>
+          </p>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+          <a href="/users/<%=user.id %>"> Number of Post: <b><%= user.post_counter %></b></a>
+        </div>
+      </div>
+
+
+
   <h1> Name: <%= @user.name %> </h1>
   <h4>
     Total post: <%= @user.post_counter %>
@@ -32,4 +57,4 @@
     See all post from this user
   </a>
   <br>
-</div>
+</div></div>
