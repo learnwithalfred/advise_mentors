@@ -26,7 +26,7 @@ RSpec.describe UsersController, type: :request do
       expect(response).to render_template(:index)
     end
     it 'The response body should have the correct placeholder text' do
-      expect(response.body).to include('<h1>Users list</h1>')
+      expect(response.body).to include('Users list')
     end
   end
 
@@ -62,7 +62,7 @@ RSpec.describe UsersController, type: :request do
     end
 
     it 'body should includes correct placeholder text' do
-      expect(response.body).to include('Number of post ')
+      expect(response.body).to include('Number of post')
     end
   end
 

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   describe 'comment should have valid attributes' do
-    post = FactoryBot.create(:post)
     user = FactoryBot.create(:user)
+    post = FactoryBot.create(:post, author_id: user.id)
     comment = FactoryBot.build(:comment, author_id: user.id, post_id: post.id)
 
     it 'expect comment to be valid with valid input filds' do
