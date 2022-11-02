@@ -1,42 +1,62 @@
-<div>
-  <img width="200px" src="<%=@user.photo %>" alt="<%=@user.name %>">
-  <h1><%= @user.name %></h1>
-  <p>
-    Number of post : <%= @user.posts.count %>
-  </p>
-  <h3>Posts</h3>
-  <br><br>
-  <% @user.posts.each do |post| %>
-  <li>
-    <h1>
-      <%= post.title %> by <%= post.user.name %>
-      <br>
-      Comments ( <%= post.comments.count %> ) Likes ( <%= post.likes.count %> )
-      <br><br>
-      <a href="/users/<%=@user.id %>/posts/<%=post.id %>"><b>Read more about this single post</b></a>
+<div class="flex  w-screen items-center justify-center mx-9 px-4 py-4 sm:px-6 lg:px-8">
+
+  <div class=" w-2/4">
+    <h1 class="m-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900">
+      All Posts from <%=@user.name %>
     </h1>
-
-    <br><br>
-    <h1>Post content</h1>
-    <hr>
-    <p>
-      <%= post.text %>
-    </p>
-    <hr><br>
-    <h3>Comments</h3>
-    <hr>
-    <% post.comments.each do |comment| %>
-
-    <div>
-      <p>
-        <%= comment.user.name %> : <%= comment.text %>
-      </p>
+    <div
+      class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+        src="<%=@user.photo %>" alt="">
+      <div class="flex flex-col justify-between p-4 leading-normal">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: <b><%=@user.name %></h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bio: <%= @user.bio %></p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of Post: <%= @user.post_counter %></p>
+      </div>
     </div>
-    <% end %>
-    </ul>
-    <hr>
-    <hr><br><br>
-    <hr>
+
+    <% @user.posts.each do |post| %>
+    <div class="p-4 my-4  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <a href="#">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= post.text %></p>
+      <a href="/users/<%=@user.id %>/posts/<%=post.id%>"
+        class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Read more
+        <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </a>
+
+      <div class=" bg-white rounded-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel"
+        aria-labelledby="services-tab">
+        <h2 class="mb-5 text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">Comments</h2>
+
+        <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
+          <% post.comments.each do |comment| %>
+
+          <li class="flex space-x-2">
+
+            <svg class="flex-shrink-0 w-4 h-4 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-light leading-tight"> <%= comment.user.name %> : <%= comment.text %></span>
+          </li>
+          <% end %>
+
+        </ul>
+      </div>
+
+    </div>
+
     <% end %>
 
+  </div>
 </div>
