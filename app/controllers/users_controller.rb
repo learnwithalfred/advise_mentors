@@ -18,5 +18,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.includes(:user, :comments).find(params[:post_id])
     @comment = @post.comments.build
+    @like = @post.likes.build
+
   end
 end
