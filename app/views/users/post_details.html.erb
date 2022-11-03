@@ -27,7 +27,7 @@
         <h2 class="mb-5 text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">Comments</h2>
 
         <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
-          <% @post.comments.each do |comment| %>
+          <% @post.comments.each do |cmt| %>
 
           <li class="flex space-x-2">
 
@@ -37,15 +37,15 @@
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                 clip-rule="evenodd"></path>
             </svg>
-            <span class="font-light leading-tight"> <%= comment.user.name %> : <%= comment.text %></span>
+            <span class="font-light leading-tight"> <%= cmt.text %></span>
           </li>
           <% end %>
 
         </ul>
       </div>
 
-
     </div>
+ <%= render "comments/form", comment: @comment%>
 
 
   </div>
