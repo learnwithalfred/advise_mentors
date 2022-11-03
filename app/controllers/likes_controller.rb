@@ -1,21 +1,12 @@
 class LikesController < ApplicationController
   def create
-    @like = Like.new(like_params)
-
-    respond_to do |format|
-      if @like.save
-        format.html { redirect_to like_url(@like), notice: 'Like was successfully created.' }
-        format.json { render :show, status: :created, location: @like }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
-      end
-    end
+    @like = Like.new(like_params.merge(author_id: current_user.id))
+    redirect_to "/users/#{params[:user_id]}/posts/#{params[:post_id]}" if @like.save
   end
 
   private
 
   def like_params
-    params.require(:like).permit(:author_id, :post_id)
+    params.require(:like).permit(:post_id)
   end
 end
