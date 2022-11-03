@@ -15,24 +15,24 @@ image_num = 0
   Post.create!(
     [{
       title: Faker::Book.title,
-      text: Faker::Lorem.paragraph(sentence_count: 1),
+      text: Faker::Lorem.paragraph(sentence_count: 15),
       author_id: Faker::Number.between(from: 1, to: 9)
     }])
 end
 
-50.times do
+100.times do
   Comment.create!(
     [{
-      text: Faker::Lorem.paragraph(sentence_count: 1),
-      author_id: Faker::Number.between(from: 1, to: 9),
-      post_id: Faker::Number.between(from: 1, to: 15)
+      text: Faker::Lorem.paragraph(sentence_count: 2),
+      author_id: Faker::Number.between(from: 1, to: 10),
+      post_id: Faker::Number.between(from: 1, to: 30)
     }])
 end
 
-50.times do
+100.times do
   Like.create!(
     [{
       author_id: Faker::Number.between(from: 1, to: 10),
-      post_id: Faker::Number.between(from: 1, to: 15)
+      post_id: Faker::Number.between(from: 1, to: 30)
     }])
 end

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
   describe 'like should have valid attributes' do
-    post = FactoryBot.create(:post)
     user = FactoryBot.create(:user)
+    post = FactoryBot.create(:post, author_id: user.id)
     like = Like.new(author_id: user.id, post_id: post.id)
 
     it 'expect like to be valid with valid input filds' do
