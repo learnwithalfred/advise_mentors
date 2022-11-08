@@ -15,36 +15,29 @@ RSpec.describe 'Users', type: :feature do
   end
 
   describe 'User index page' do
-    # before(:each) do
-    # end
+    before(:each) do
+      visit users_path
+    end
 
     it 'I can see the username of all other users' do
-            visit users_path
-
       expect(current_path).to eq(users_path)
       expect(page).to have_content @fisrt_user.name
       expect(page).to have_content @user2.name
     end
 
     it 'I can see the profile picture for each user' do
-            visit users_path
-
       expect(current_path).to eq(users_path)
       expect(page).to have_content @fisrt_user.photo
       expect(page).to have_content @user2.photo
     end
 
     it 'I can see the number of posts each user has written' do
-            visit users_path
-
       expect(current_path).to eq(users_path)
       expect(page).to have_content "Number of Post: #{@fisrt_user.post_counter}"
       expect(page).to have_content "Number of Post: #{@user2.post_counter}"
     end
 
     it "When I click on a user, I am redirected to that user's show page" do
-            visit users_path
-
       visit users_path(@fisrt_user)
       expect(page).to have_content @fisrt_user.photo
       expect(page).to have_content @fisrt_user.name
@@ -52,45 +45,42 @@ RSpec.describe 'Users', type: :feature do
     end
   end
 
-  describe "user show page" do
-    # before(:each) do
-    # end 
+  describe 'user show page' do
+    before(:each) do
+      visit users_path(@fisrt_user)
+    end
 
     it 'I can see the user\'s profile picture.' do
-            visit users_path(@fisrt_user)
-
       expect(page).to have_content @fisrt_user.photo
     end
 
     it 'I can see the user\'s username.' do
-            visit users_path(@fisrt_user)
-
       expect(page).to have_content @fisrt_user.name
     end
-        
-    it 'I can see the number of posts the user has written' do
-            visit users_path(@fisrt_user)
 
+    it 'I can see the number of posts the user has written' do
       expect(page).to have_content "Number of Post: #{@fisrt_user.post_counter}"
     end
-  
-    # it 'I can see the user\'s bio.' do
-    #         visit users_path(@fisrt_user)
 
-    #   expect(page).to have_content "Bio"
-    # end
+    it 'I can see the user\'s bio.' do
+      visit "users/#{@fisrt_user.id}"
+      expect(page).to have_content('Bio')
+    end
 
     it 'I can see the user\'s first 3 posts.' do
-            visit users_path(@fisrt_user)
-
       expect(page).to have_content @post1.title
       expect(page).to have_content @post2.title
       expect(page).to have_content @post3.title
     end
 
-    # it 'I can see a button that lets me view all of a user\'s posts.' do
-    #   expect(page).to have_content "View All User's Posts"
-    # end
+    it 'When I click a user\'s post, it redirects me to that post\'s show page.' do
+      visit "/users/#{@fisrt_user.id}/posts/#{@post1.id}"
+      expect(page).to have_content @post1.title
+    end
+
+    it 'When I click to see all posts, it redirects me to the user\'s post\'s index page.' do
+      visit "/users/#{@fisrt_user.id}/posts"
+      expect(page).to have_content "All Posts from #{@fisrt_user.name}"
+    end
   end
-  
 end
