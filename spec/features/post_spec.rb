@@ -45,4 +45,32 @@ RSpec.describe 'Users', type: :feature do
       expect(page).to have_content @post1.title
     end
   end
+
+  describe 'Post show page' do
+    before(:each) do
+      visit "/users/#{@fisrt_user.id}/posts/#{@post1.id}"
+    end
+    it "I can see the post's title" do
+      expect(page).to have_content @post1.title
+    end
+    it 'I can see who wrote the post' do
+      expect(page).to have_content @fisrt_user.name
+    end
+
+    it "I can see the post's body" do
+      expect(page).to have_content @post1.text
+    end
+
+    it 'I can see how many likes it has' do
+      expect(page).to have_content @post1.likes.count
+    end
+
+    it 'I can see the username of each commentor' do
+      expect(page).to have_content @comment1.user.name
+    end
+
+    it 'I can see the comment each commentor left' do
+      expect(page).to have_content @comment1.text
+    end
+  end
 end
