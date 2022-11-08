@@ -12,6 +12,8 @@
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: <b><%=@user.name %></h5>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bio: <%= @user.bio %></p>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of post: <%= @user.post_counter %></p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of Likes: <%= @user.likes.count %></p>
+
       </div>
     </div>
 
@@ -24,7 +26,7 @@
 
       <div class=" bg-white rounded-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel"
         aria-labelledby="services-tab">
-        <h2 class="mb-5 text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">Comments</h2>
+        <h2 class="mb-5 text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">Comments (<%=post.comments.count%>)</h2>
 
         <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
           <% post.comments.includes(:user).each do |comment| %>
