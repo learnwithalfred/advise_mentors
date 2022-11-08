@@ -2,43 +2,95 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :feature do
   before(:each) do
-    @user1 = FactoryBot.create(:user)
+    @fisrt_user = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:user)
-    @post1 = FactoryBot.create(:post, author_id: @user1.id)
-    @post2 = FactoryBot.create(:post, author_id: @user2.id)
-    @comment1 = FactoryBot.create(:comment, author_id: @user1.id, post_id: @post1.id)
+    @post1 = FactoryBot.create(:post, author_id: @fisrt_user.id)
+    @post2 = FactoryBot.create(:post, author_id: @fisrt_user.id)
+    @post3 = FactoryBot.create(:post, author_id: @fisrt_user.id)
+    @post4 = FactoryBot.create(:post, author_id: @fisrt_user.id)
+    @post5 = FactoryBot.create(:post, author_id: @user2.id)
+    @comment1 = FactoryBot.create(:comment, author_id: @fisrt_user.id, post_id: @post1.id)
     @comment2 = FactoryBot.create(:comment, author_id: @user2.id, post_id: @post1.id)
-    @like1 = FactoryBot.create(:like, author_id: @user1.id, post_id: @post1.id)
+    @like1 = FactoryBot.create(:like, author_id: @fisrt_user.id, post_id: @post1.id)
   end
 
   describe 'User index page' do
-    before(:each) do
-      visit users_path
-    end
+    # before(:each) do
+    # end
 
     it 'I can see the username of all other users' do
+            visit users_path
+
       expect(current_path).to eq(users_path)
-      expect(page).to have_content @user1.name
+      expect(page).to have_content @fisrt_user.name
       expect(page).to have_content @user2.name
     end
 
     it 'I can see the profile picture for each user' do
+            visit users_path
+
       expect(current_path).to eq(users_path)
-      expect(page).to have_content @user1.photo
+      expect(page).to have_content @fisrt_user.photo
       expect(page).to have_content @user2.photo
     end
 
     it 'I can see the number of posts each user has written' do
+            visit users_path
+
       expect(current_path).to eq(users_path)
-      expect(page).to have_content "Number of Post: #{@user1.post_counter}"
+      expect(page).to have_content "Number of Post: #{@fisrt_user.post_counter}"
       expect(page).to have_content "Number of Post: #{@user2.post_counter}"
     end
 
     it "When I click on a user, I am redirected to that user's show page" do
-      visit users_path(@user1)
-      expect(page).to have_content @user1.photo
-      expect(page).to have_content @user1.name
-      expect(current_path).to eq(users_path(@user1))
+            visit users_path
+
+      visit users_path(@fisrt_user)
+      expect(page).to have_content @fisrt_user.photo
+      expect(page).to have_content @fisrt_user.name
+      expect(current_path).to eq(users_path(@fisrt_user))
     end
   end
+
+  describe "user show page" do
+    # before(:each) do
+    # end 
+
+    it 'I can see the user\'s profile picture.' do
+            visit users_path(@fisrt_user)
+
+      expect(page).to have_content @fisrt_user.photo
+    end
+
+    it 'I can see the user\'s username.' do
+            visit users_path(@fisrt_user)
+
+      expect(page).to have_content @fisrt_user.name
+    end
+        
+    it 'I can see the number of posts the user has written' do
+            visit users_path(@fisrt_user)
+
+      expect(page).to have_content "Number of Post: #{@fisrt_user.post_counter}"
+    end
+  
+    # it 'I can see the user\'s bio.' do
+    #         visit users_path(@fisrt_user)
+
+    #   expect(page).to have_content "Bio"
+    # end
+
+    it 'I can see the user\'s first 3 posts.' do
+            visit users_path(@fisrt_user)
+
+      expect(page).to have_content @post1.title
+      expect(page).to have_content @post2.title
+      expect(page).to have_content @post3.title
+    end
+
+    # it 'I can see a button that lets me view all of a user\'s posts.' do
+    #   expect(page).to have_content "View All User's Posts"
+    # end
+  end
+  
 end
