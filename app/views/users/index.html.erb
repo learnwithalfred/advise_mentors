@@ -12,9 +12,12 @@
           <img width="100px" src=<%=user.photo %> alt=<%= user.name %> class="max-w-xs h-auto" />
         </div>
         <div class="flex-1 min-w-0 pl-4">
+                      <a href="/users/<%=user.id %>">
+
           <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-            Name: <b><%= user.name %>
+            Username: <b><%= user.name %>
           </p>
+          </a>
           <p class="text-sm text-gray-500 truncate dark:text-gray-400">
             <a href="/users/<%=user.id %>">View more</a>
           </p>

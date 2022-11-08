@@ -5,9 +5,8 @@ RSpec.describe 'Posts', type: :request do
     @user = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:user)
     @post = FactoryBot.create(:post, author_id: @user.id)
-    @Comment = FactoryBot.create(:comment, author_id: @user.id, post_id: @post.id)
-    @Comment = FactoryBot.create(:comment, author_id: @user2.id, post_id: @post.id)
-
+    @comment = FactoryBot.create(:comment, author_id: @user.id, post_id: @post.id)
+    @comment = FactoryBot.create(:comment, author_id: @user2.id, post_id: @post.id)
   end
 
   describe 'GET /index' do

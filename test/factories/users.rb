@@ -3,6 +3,5 @@ FactoryBot.define do
     name { 'MyString' }
     photo { 'MyString' }
     bio { 'MyText' }
-    post_counter { 0 }
   end
 end
