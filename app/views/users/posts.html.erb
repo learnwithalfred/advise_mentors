@@ -12,22 +12,24 @@
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: <b><%=@user.name %></h5>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bio: <%= @user.bio %></p>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of post: <%= @user.post_counter %></p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of Likes: <%= @user.likes.count %></p>
+
       </div>
     </div>
 
-    <% @user.posts.each do |post| %>
+    <% @posts.each do |post| %>
     <div class="p-4 my-4  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h5>
       </a>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= post.text %></p>
-     
+
       <div class=" bg-white rounded-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel"
         aria-labelledby="services-tab">
-        <h2 class="mb-5 text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">Comments</h2>
+        <h2 class="mb-5 text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">Comments (<%=post.comments.count%>)</h2>
 
         <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
-          <% post.comments.each do |comment| %>
+          <% post.comments.includes(:user).each do |comment| %>
 
           <li class="flex space-x-2">
 
@@ -43,7 +45,7 @@
 
         </ul>
       </div>
- <a href="/users/<%=@user.id %>/posts/<%=post.id%>"
+      <a href="/users/<%=@user.id %>/posts/<%=post.id%>"
         class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Read more
         <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"

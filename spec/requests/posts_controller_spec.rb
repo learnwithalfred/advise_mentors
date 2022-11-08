@@ -2,16 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   before(:each) do
-    @user = User.create(name: 'Tom Nath', photo: 'https://picsum.photos/208', bio: 'I love coding rails',
-                        post_counter: 0)
-    @post = Post.create(
-      author_id: @user.id,
-      title: 'Post title',
-      text: 'Post text'
-    )
-    Comment.create(author_id: @user.id, post: @post, text: 'This is great')
-    Comment.create(author_id: @user.id, post: @post, text: 'Testing')
-    Comment.create(author_id: @user.id, post: @post, text: 'I love this test')
+    @user = FactoryBot.create(:user)
+    @user2 = FactoryBot.create(:user)
+    @post = FactoryBot.create(:post, author_id: @user.id)
+    @comment = FactoryBot.create(:comment, author_id: @user.id, post_id: @post.id)
+    @comment = FactoryBot.create(:comment, author_id: @user2.id, post_id: @post.id)
   end
 
   describe 'GET /index' do

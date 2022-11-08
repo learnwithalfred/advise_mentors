@@ -1,5 +1,4 @@
 <div class="flex  w-screen items-center justify-center mx-9 px-4 py-4 sm:px-6 lg:px-8">
-
   <div class=" w-2/4">
     <h1 class="m-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">
       Users Details page
@@ -13,8 +12,8 @@
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bio: <%= @user.bio %></p>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of Post: <%= @user.post_counter %></p>
       </div>
+      
     </div>
-
     <h1 class="m-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900">
     Recent Posts</h1>
     <%@recent_posts.each_with_index do |post, index| %>
@@ -40,7 +39,7 @@
 
     <a href="/users/<%=@user.id%>/posts"
       class=" my-8 inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
-      See all post from this user
+      View All User's Posts
       <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd"

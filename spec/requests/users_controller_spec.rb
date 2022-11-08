@@ -2,16 +2,11 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :request do
   before(:each) do
-    @user = User.create(name: 'Tom Nath', photo: 'https://picsum.photos/208', bio: 'I love coding rails',
-                        post_counter: 0)
-    @post = Post.create(
-      author_id: @user.id,
-      title: 'Post title',
-      text: 'Post text'
-    )
-    Comment.create(author_id: @user.id, post: @post, text: 'This is great')
-    Comment.create(author_id: @user.id, post: @post, text: 'Testing')
-    Comment.create(author_id: @user.id, post: @post, text: 'I love this test')
+    @user = FactoryBot.create(:user)
+    @post = FactoryBot.create(:post, author_id: @user.id)
+    @comment1 = FactoryBot.create(:comment, author_id: @user.id, post_id: @post.id)
+    @comment2 = FactoryBot.create(:comment, author_id: @user.id, post_id: @post.id)
+    @like = FactoryBot.create(:like, author_id: @user.id, post_id: @post.id)
   end
 
   describe "GET 'index' page" do
@@ -44,7 +39,7 @@ RSpec.describe UsersController, type: :request do
     end
 
     it 'body should includes correct placeholder text' do
-      expect(response.body).to include('Tom Nath')
+      expect(response.body).to include(@user.name)
     end
   end
 
