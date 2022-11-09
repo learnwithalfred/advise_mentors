@@ -47,6 +47,12 @@
       <div class="text-sm leading-5">
         <%= link_to "Need an account? Sign up", new_user_registration_path, class:"font-medium text-bb-gray-700 hover:text-bb-gray-900 focus:outline-none focus:underline transition ease-in-out duration-150" %>
       </div>
+      <div class="text-sm leading-5">
+
+      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+<% end %>
+      </div>
     </div>
   </div>
 </div>
