@@ -13,38 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-
-.flash {
-  position: fixed;
-  top: 0.1rem;
-  left: 50%;
-  transform: translateX(-50%);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-
-  max-width: 100%;
-  width: max-content;
-  padding: 1rem;
-}
-.flash__message {
-  font-size: 1.2rem;
-  margin: 0 auto;
-  color: red;
-  animation: appear-then-fade 10s both;
-  border-radius: 999px;
-}
-
-@keyframes appear-then-fade {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  5%,
-  60% {
-    opacity: 1;
-  }
-}
