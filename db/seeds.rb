@@ -5,7 +5,10 @@ image_num = 0
     [{
       name: Faker::Name.name,
       photo: "https://picsum.photos/20#{image_num}",
-      bio: Faker::Lorem.paragraph(sentence_count: 1)
+      bio: Faker::Lorem.paragraph(sentence_count: 6),
+      email: Faker::Internet.email,
+      password: "password"
+
     }])
 end
 
