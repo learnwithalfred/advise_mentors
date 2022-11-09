@@ -1,6 +1,47 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+
+
+ <div class="mt-6">
+        <%= f.label "Full Name", class:"block text-sm font-medium leading-5
+        text-bb-gray-700" %>
+        <div class="mt-1 rounded-md shadow-sm">
+          <%= f.text_field :name, autofocus: true, autocomplete: "name",
+          placeholder:"Full Name", class: "transition border focus:outline-none
+          focus:shadow-outline-blue block w-full appearance-none rounded-md
+          border-gray-300 px-3 py-2 placeholder-gray-400 duration-150
+          ease-in-out focus:border-blue-300 sm:text-sm sm:leading-5",
+          required:"true" %>
+        </div>
+      </div>
+ <div class="mt-6">
+        <%= f.label "Photo URL", class:"block text-sm font-medium leading-5
+        text-bb-gray-700" %>
+        <div class="mt-1 rounded-md shadow-sm">
+          <%= f.text_field :photo, autofocus: true, autocomplete: "photo",
+          placeholder:"Photo URL", class: "transition border focus:outline-none
+          focus:shadow-outline-blue block w-full appearance-none rounded-md
+          border-gray-300 px-3 py-2 placeholder-gray-400 duration-150
+          ease-in-out focus:border-blue-300 sm:text-sm sm:leading-5",
+          required:"true" %>
+        </div>
+      </div>
+
+ <div class="mt-6">
+        <%= f.label "Bio", class:"block text-sm font-medium leading-5
+        text-bb-gray-700" %>
+        <div class="mt-1 rounded-md shadow-sm">
+          <%= f.text_field :bio, autofocus: true, autocomplete: "bio",
+          placeholder:"Bio", class: "transition border focus:outline-none
+          focus:shadow-outline-blue block w-full appearance-none rounded-md
+          border-gray-300 px-3 py-2 placeholder-gray-400 duration-150
+          ease-in-out focus:border-blue-300 sm:text-sm sm:leading-5",
+          required:"true" %>
+        </div>
+      </div>
+
+
     <div class="mt-6">
       <%= f.label :email, class:"block text-sm font-medium leading-5 text-bb-gray-700" %><i>(leave blank if you don't
         want to change it)</i><br />
