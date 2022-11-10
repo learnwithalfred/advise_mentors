@@ -84,8 +84,6 @@ gem 'cancancan'
 
 gem 'faker'
 
-
-
 gem 'rack-cors'
 
 gem 'devise-jwt'

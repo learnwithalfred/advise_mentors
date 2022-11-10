@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
         end
         format.json do
           render json: comment
-      end
+        end
       end
     end
   end
