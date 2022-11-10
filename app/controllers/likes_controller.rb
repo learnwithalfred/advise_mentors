@@ -1,12 +1,20 @@
 class LikesController < ApplicationController
   def create
-    @like = Like.new(like_params.merge(author_id: current_user.id))
-    redirect_to "/users/#{params[:user_id]}/posts/#{params[:post_id]}" if @like.save
-  end
+    post = Post.find(params[:post_id])
+    user = current_user
+    like = Like.new(params.permit(:user, :post))
+    like.user = user
+    like.post = post
 
-  private
-
-  def like_params
-    params.require(:like).permit(:post_id)
+    respond_to do |format|
+      format.html do
+        if like.save
+          flash[:success] = 'You gave a like to this post!'
+          redirect_to user_post_url(user, post)
+        else
+          flash.now[:error] = 'Error: Your like was not saved!'
+        end
+      end
+    end
   end
 end

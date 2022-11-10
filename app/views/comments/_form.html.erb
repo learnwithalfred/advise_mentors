@@ -1,7 +1,6 @@
 <div class="mx-auto md:w-2/3 w-full"><!-- Add new post -->
   <div class="post-wrapper">
-    <%= form_with(model: comment, class: "contents") do |form| %>
-   <%= form.hidden_field :post_id %>
+<%= form_with url: user_post_comments_url(@user, @post), method: :post, local: true, scope: :comment do |form| %>   <%= form.hidden_field :post_id %>
   <div class="my-5">
     <%= form.label "Add comment" %>
     <%= form.text_field :text, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required:true %>

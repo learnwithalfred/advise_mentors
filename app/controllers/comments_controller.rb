@@ -1,20 +1,38 @@
-class CommentsController < ApplicationController
-  def create
-    @comment = Comment.new(comment_params.merge(author_id: current_user.id))
 
+class CommentsController < ApplicationController
+  def new
+    @user = current_user
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new
+  end
+
+
+  def create
+    user = current_user
+    post = Post.find(params[:post_id])
+    comment = Comment.new(params.require(:comment).permit(:text))
+    comment.user = user
+    comment.post = post
     respond_to do |format|
-      if @comment.save
+      if comment.save
         format.html do
-          redirect_to "/users/#{params[:user_id]}/posts/#{params[:post_id]}",
-                      notice: 'Comment was successfully created.'
+          redirect_to user_post_url(user.id, post.id), notice: 'Comment was successfully created.'
         end
       end
     end
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    post = comment.post.id
+    comment.destroy
+    redirect_to user_post_path(current_user, post)
+  end
+
+
   private
 
   def comment_params
-    params.require(:comment).permit(:text, :post_id)
+    params.require(:comment).permit(:text, :post)
   end
 end

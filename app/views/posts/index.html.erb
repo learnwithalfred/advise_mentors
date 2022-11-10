@@ -3,8 +3,12 @@
   <% @posts.each_with_index do |post, index| %>
   <ul>
     <li>
-      <%=index + 1 %> - Title: <b><%= post.title %> </b> 
+      <%=index + 1 %> - Title: <b><%= post.title %> </b>
       <a href="/posts/<%=post.id %>">View more</a>
+
+      <% if can? :delete, Post %>
+      <%= button_to "Delete post", user_post_path(@user, post.id), method: :delete,class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <% end %>
     </li>
   </ul>
   <% end %>

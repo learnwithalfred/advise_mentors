@@ -9,13 +9,14 @@ devise_for :users, path: "auth",
       registration: 'register',
       sign_up: 'cmon_let_me_in'
   }  
-  get '/users', to: 'users#index'
-  get '/users/:id', to: 'users#show'
-  get '/users/:id/posts', to: 'users#posts'
-  get '/users/:id/posts/:post_id', to: 'users#post_details'
-  resources :posts
-  resources :comments
-  resources :likes
+
+   resources :users, only: [:index, :show] do
+    resources :posts, only: [:index, :show, :new, :create, :destroy] do
+      resources :comments, only: [:index, :create, :destroy]
+      resources :likes, only: [:create]
+    end
+  end
+
 
   root "users#index"
 end
