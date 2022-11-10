@@ -5,6 +5,7 @@
       Users list
     </h1>
     <% @users.each_with_index do |user, index| %>
+          <%= link_to user_path(user.id) do %>
 
     <li class="py-3 sm:py-4 list-none">
       <div class="flex items-center">
@@ -12,21 +13,21 @@
           <img width="100px" src=<%=user.photo %> alt=<%= user.name %> class="max-w-xs h-auto" />
         </div>
         <div class="flex-1 min-w-0 pl-4">
-                      <a href="/users/<%=user.id %>">
 
           <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
             Username: <b><%= user.name %>
           </p>
-          </a>
           <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-            <a href="/users/<%=user.id %>">View more</a>
+            View more
           </p>
         </div>
         <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-          <a href="/users/<%=user.id %>"> Number of Post: <b><%= user.post_counter %></b></a>
+           Number of Post: <b><%= user.post_counter %></b>
         </div>
       </div>
     </li>
+              <% end %>
+
     <hr>
     <% end %>
 

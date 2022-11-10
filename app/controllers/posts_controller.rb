@@ -1,34 +1,53 @@
 class PostsController < ApplicationController
+  # before_action :authenticate_user!
+  # load_and_authorize_resource
+
   def index
-    @posts = Post.all
+    @user = User.includes(:posts).find(params[:user_id])
+    @posts = @user.posts
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
   def show
+    @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
+    @comments = Comment.where(posts_id: params[:id])
+    # @comments = Comment.where(post_id: params[:id])
   end
 
   def new
     @post = Post.new
   end
 
-  # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params.merge(author_id: current_user.id))
+    @post = current_user.posts.new(strong_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html do
-          redirect_to "/users/#{@post.user.id}/posts/#{@post.id}", notice: 'Post was successfully created.'
-        end
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      flash[:success] = 'Post saved!'
+      redirect_to user_path(current_user.id)
+    else
+      flash.now[:error] = 'Please fill all fields'
+      render :new, status: 422
     end
   end
 
-  def post_params
+  def destroy
+    Post.destroy(params[:id])
+    redirect_to user_path(current_user)
+    flash[:success] = 'The post was successfully destroyed.'
+  end
+
+  rescue_from CanCan::AccessDenied do
+    redirect_to '/sign_in'
+  end
+
+  private
+
+  def strong_params
     params.require(:post).permit(:title, :text)
   end
 end
