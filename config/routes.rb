@@ -18,5 +18,14 @@ devise_for :users, path: "auth",
   end
 
 
+    # api routes
+  namespace :api do
+    resources :users, only: [:index, :show] do
+      resources :posts, only: [:index], format: :json do
+        resources :comments, only: [:index, :create], format: :json
+      end
+    end
+  end
+
   root "users#index"
 end
