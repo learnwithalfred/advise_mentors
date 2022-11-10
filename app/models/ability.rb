@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -7,6 +5,6 @@ class Ability
     can :manage, :all if user.admin?
 
     can :destroy, Post, user: user
-    can :destroy, Comment, user: user
+    can :destroy, Comment, user:
   end
 end

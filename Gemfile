@@ -80,5 +80,6 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'faker'
 gem 'cancancan'
+
+gem 'faker'
