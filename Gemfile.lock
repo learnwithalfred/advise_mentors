@@ -107,6 +107,8 @@ GEM
       railties (>= 5.0.0)
     faker (3.0.0)
       i18n (>= 1.8.11, < 2)
+    ffi (1.15.5)
+    ffi (1.15.5-x64-mingw-ucrt)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -120,6 +122,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json-schema (3.0.0)
+      addressable (>= 2.8)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -209,6 +213,20 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.12.0)
+    rswag (2.7.0)
+      rswag-api (= 2.7.0)
+      rswag-specs (= 2.7.0)
+      rswag-ui (= 2.7.0)
+    rswag-api (2.7.0)
+      railties (>= 3.1, < 7.1)
+    rswag-specs (2.7.0)
+      activesupport (>= 3.1, < 7.1)
+      json-schema (>= 2.2, < 4.0)
+      railties (>= 3.1, < 7.1)
+      rspec-core (>= 2.14)
+    rswag-ui (2.7.0)
+      actionpack (>= 3.1, < 7.1)
+      railties (>= 3.1, < 7.1)
     rubyzip (2.3.2)
     selenium-webdriver (4.6.1)
       childprocess (>= 0.5, < 5.0)
@@ -224,9 +242,9 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.1.1)
       railties (>= 6.0.0)
-    tailwindcss-rails (2.0.19-x64-mingw-ucrt)
+    tailwindcss-rails (2.0.20-x64-mingw-ucrt)
       railties (>= 6.0.0)
-    tailwindcss-rails (2.0.19-x86_64-darwin)
+    tailwindcss-rails (2.0.20-x86_64-darwin)
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.0)
@@ -271,6 +289,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker
+  ffi
   importmap-rails
   jbuilder
   pg (~> 1.1)
@@ -278,6 +297,7 @@ DEPENDENCIES
   rails (~> 7.0.4)
   rails-controller-testing
   rspec-rails (~> 6.0.0.rc1)
+  rswag
   selenium-webdriver
   sprockets-rails
   stimulus-rails
@@ -291,4 +311,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.25
+   2.3.7

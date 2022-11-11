@@ -1,0 +1,83 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  users/:id/posts:
+    post:
+      summary: Creates a post
+      tags:
+      - Posts
+      parameters: []
+      responses:
+        '201':
+          description: Post saved!
+        '422':
+          description: Please fill all fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                text:
+                  type: string
+              required:
+              - title
+              - text
+  users/:id/posts/:id:
+    get:
+      summary: Retrieves a post
+      tags:
+      - Posts
+      - Another Tag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: post found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  text:
+                    type: string
+                required:
+                - id
+                - title
+                - text
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  text:
+                    type: string
+                required:
+                - id
+                - title
+                - text
+        '404':
+          description: post not found
+        '406':
+          description: unsupported accept header
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
