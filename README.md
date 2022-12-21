@@ -1,8 +1,8 @@
-# Rails Blog app
+# Advise Mentors
 
-![Blog App](blog_app_erd.png)
+![Advise Mentors](advise_mentors.png)
 
-> The Blog app will be a classic example of a blog website. You will create a fully functional website that will show the list of posts and empower readers to interact with them by adding comments and liking posts
+> The Advise Mentors is a classic example of a blog website. We created a fully functional website that show the list of posts and empower readers to interact with them by adding comments and liking posts
 
 ## Built With
 
@@ -17,19 +17,27 @@
  - yarn
  - Node.js
 
+## Live link
+
+[Website Live link](https://nana-ama.herokuapp.com/)
+
+## Preview Video
+
+[Video Walk through](https://www.loom.com/share/5463d533e60a4596a1ac70c89ecbfe36)
+
 ## Getting Started 🙌
 
 To get a local copy up and running follow these simple example steps.
 
 - Copy and paste the following commands into your terminal to get everything up and running
   ```
-  git clone https://github.com/learnwithalfred/blog_
-  cd blog_
+  git clone https://github.com/learnwithalfred/advise_mentors
+  cd advise_mentors
   bundle install
   yarn install
   rails db:create
   rails db:migrate
-  ./bin/dev
+  bin/dev
 
 👤 **Alfred Boateng**
 
