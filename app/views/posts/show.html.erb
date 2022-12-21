@@ -2,7 +2,7 @@
 
   <div class=" w-2/4">
 
-    <h1 class="my-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900">
+    <h1 class="my-4 text-3xl font-extrabold tracking-tight leading-none text-white">
       <span class="text-blue-600">
         <%= @post.title %>
       </span>
@@ -18,7 +18,7 @@
     <div class="p-4 my-4  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <h2>Post content</h2>
       <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%=@post.title %></h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white"><%=@post.title %></h5>
       </a>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%=@post.text %></p>
 
@@ -28,7 +28,7 @@
 
       <div class=" bg-white rounded-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel"
         aria-labelledby="services-tab">
-        <h2 class="mb-5 text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">Comments</h2>
+        <h2 class="mb-5 text-xl font-extrabold tracking-tight text-white dark:text-white">Comments</h2>
 
         <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
           <% @post.comments.includes(:user).each do |cmt| %>
@@ -49,9 +49,9 @@
         </ul>
 
         <div class="w-2/3 my-12">
-        
-            <%= form_with url: user_post_comments_url(@user, @post), method: :post, local: true, scope: :comment do |f| %>
-  <div class="d-flex">
+
+          <%= form_with url: user_post_comments_url(@user, @post), method: :post, local: true, scope: :comment do |f| %>
+          <div class="d-flex">
             <div class="comment-area">
               <%= f.text_field :text, class:"block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", placeholder:"Add your comment...", required:true %>
             </div>
@@ -59,16 +59,16 @@
 
               <%= f.submit "Create comment",class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
             </div>
-</div>
-            <% end %>
           </div>
-
+          <% end %>
         </div>
-      </div>
 
+      </div>
     </div>
 
-
   </div>
+
+
+</div>
 </div>
 </div>

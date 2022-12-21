@@ -1,26 +1,26 @@
 <div class="flex  w-screen items-center justify-center mx-9 px-4 py-4 sm:px-6 lg:px-8">
   <div class=" w-2/4">
-    <h1 class="m-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">
-      Users Details page
+    <h1 class="m-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+      Advices from <%= @user.name %>
     </h1>
     <div
       class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
       <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
         src="<%=@user.photo %>" alt="">
       <div class="flex flex-col justify-between p-4 leading-normal">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: <b><%=@user.name %></h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">Name: <b><%=@user.name %></h5>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bio: <%= @user.bio %></p>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of Post: <%= @user.post_counter %></p>
       </div>
 
     </div>
-    <h1 class="m-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900">
+    <h1 class="m-4 text-3xl font-extrabold tracking-tight leading-none text-white">
       Recent Posts</h1>
     <%@user.recent_posts.each_with_index do |post, index| %>
 
     <div class="p-4 my-4  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white"><%= post.title %></h5>
       </a>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= post.text %></p>
       <%= link_to user_post_path(@user.id, post.id) do %>
