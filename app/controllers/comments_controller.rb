@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if comment.save
         format.html do
-          redirect_to user_post_url(user.id, post.id), notice: 'Comment was successfully created.'
+          redirect_to user_post_url(user.id, post.id)
         end
         format.json do
           render json: comment
