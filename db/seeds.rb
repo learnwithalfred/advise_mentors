@@ -15,8 +15,8 @@ end
 20.times do
   Post.create!(
     [{
-      title: Faker::Quote.matz,
-      text: Faker::Lorem.paragraph(sentence_count: 15),
+      title: Faker::Quotes::Shakespeare.hamlet_quote,
+      text: Faker::Quote.matz,
       author_id: User.all.sample.id,
     }])
 end
@@ -24,7 +24,7 @@ end
 30.times do
   Comment.create!(
     [{
-      text: Faker::Lorem.paragraph(sentence_count: 2),
+      text: Faker::Quotes::Shakespeare.romeo_and_juliet_quote,
       author_id: User.all.sample.id,
       post_id: Post.all.sample.id,
     }])
