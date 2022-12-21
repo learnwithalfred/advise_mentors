@@ -1,24 +1,73 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <h1>3 recent posts</h1>
-    <%=@posts.each do |post| %>
-      <div class="bg-white shadow-md rounded-lg px-4 py-6 mb-4">
-       <li><%= post.title %></li>
+<div class="flex  w-screen items-center justify-center mx-9 px-4 py-4 sm:px-6 lg:px-8">
+  <div class=" w-2/4">
+    <h1 class="m-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+      Advices from <%= @user.name %>
+    </h1>
+    <div
+      class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+        src="<%=@user.photo %>" alt="">
+      <div class="flex flex-col justify-between p-4 leading-normal">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">Name: <b><%=@user.name %></h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bio: <%= @user.bio %></p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Number of Post: <%= @user.post_counter %></p>
       </div>
+
+    </div>
+    <h1 class="m-4 text-3xl font-extrabold tracking-tight leading-none text-white">
+      Recent Posts</h1>
+    <%@user.recent_posts.each_with_index do |post, index| %>
+
+    <div class="p-4 my-4  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <a href="#">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white"><%= post.title %></h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= post.text %></p>
+      <%= link_to user_post_path(@user.id, post.id) do %>
+
+      <span
+        class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Read more
+        <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </span>
+    </div>
     <% end %>
 
+    <% end %>
 
+    <%= link_to user_posts_path(@user) do %>
 
-    <%= render @user %>
+    <span
+      class=" my-8 inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+      View All User's Posts
+      <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
 
-    <%= link_to 'Edit this user', edit_user_path(@user), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this user', user_path(@user), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to 'Back to users', users_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    </span>
+    <% end %>
+
+    <br>
+    <span
+      class=" my-8 inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800">
+      <%= link_to users_path do %>
+      <button class="see-all-button">Back to users list</button>
+      <% end %>
+    </span>
+
+    <span
+      class=" my-8 inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+      <%= link_to new_user_post_path(@user) do %>
+      <button class="see-all-button">Create a new post</button>
+      <% end %>
+    </span>
   </div>
 </div>

@@ -11,9 +11,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <body class="body">
+    <div class="max-w-9xl mx-auto px-4 py-2 sm:px-6 lg:px-8 ">
+      <div class="mx-auto max-w-9xl ">
+        <main>
+          <%= render 'shared/navbar' %>
+          <div class="flash"><%= render 'shared/flash' %> </div>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   </body>
 </html>

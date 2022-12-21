@@ -1,38 +1,47 @@
 image_num = 0
-10.times do
-  image_num += 1
+5.times do
+  image_num = image_num + 1
   User.create!(
     [{
       name: Faker::Name.name,
-      photo: "https://picsum.photos/20#{image_num}@test.com",
-      bio: Faker::Lorem.paragraph(sentence_count: 1)
+      photo: "https://picsum.photos/20#{image_num}",
+      bio: Faker::Lorem.paragraph(sentence_count: 3),
+      email: Faker::Internet.email,
+      password: "secrete"
+
     }])
 end
 
-image_num = 0
-30.times do
-  image_num += 1
+20.times do
   Post.create!(
     [{
-      title: Faker::Book.title,
-      text: Faker::Lorem.paragraph(sentence_count: 1),
-      author_id: Faker::Number.between(from: 1, to: 9)
+      title: Faker::Quote.matz,
+      text: Faker::Lorem.paragraph(sentence_count: 15),
+      author_id: User.all.sample.id,
     }])
 end
 
-50.times do
+30.times do
   Comment.create!(
     [{
-      text: Faker::Lorem.paragraph(sentence_count: 1),
-      author_id: Faker::Number.between(from: 1, to: 9),
-      post_id: Faker::Number.between(from: 1, to: 15)
+      text: Faker::Lorem.paragraph(sentence_count: 2),
+      author_id: User.all.sample.id,
+      post_id: Post.all.sample.id,
     }])
 end
 
-50.times do
+30.times do
   Like.create!(
     [{
-      author_id: Faker::Number.between(from: 1, to: 10),
-      post_id: Faker::Number.between(from: 1, to: 15)
+      author_id: User.all.sample.id,
+      post_id: Post.all.sample.id,
     }])
 end
+
+User.create(
+  name:"John Doe", 
+  photo: "https://picsum.photos/200",
+  bio: Faker::Lorem.paragraph(sentence_count: 3),
+  email: "john@test.com",
+  password: "secrete"
+)

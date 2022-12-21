@@ -1,21 +1,20 @@
 class LikesController < ApplicationController
   def create
-    @like = Like.new(like_params)
+    post = Post.find(params[:post_id])
+    user = current_user
+    like = Like.new(params.permit(:user, :post))
+    like.user = user
+    like.post = post
 
     respond_to do |format|
-      if @like.save
-        format.html { redirect_to like_url(@like), notice: 'Like was successfully created.' }
-        format.json { render :show, status: :created, location: @like }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
+      format.html do
+        if like.save
+          flash[:success] = 'You gave a like to this post!'
+          redirect_to user_post_url(user, post)
+        else
+          flash.now[:error] = 'Error: Your like was not saved!'
+        end
       end
     end
-  end
-
-  private
-
-  def like_params
-    params.require(:like).permit(:author_id, :post_id)
   end
 end

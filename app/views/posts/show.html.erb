@@ -1,15 +1,74 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="flex  w-screen items-center justify-center mx-9 px-4 py-4 sm:px-6 lg:px-8">
 
-    <%= render @post %>
+  <div class=" w-2/4">
 
-    <%= link_to 'Edit this post', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this post', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <h1 class="my-4 text-3xl font-extrabold tracking-tight leading-none text-white">
+      <span class="text-blue-600">
+        <%= @post.title %>
+      </span>
+      by
+      <span class="text-blue-400">
+        <%= @post.user.name %>
+      </span>
+    </h1>
+    <h4>
+      Comments ( <%= @post.comments.count %> ) Likes ( <%= @post.likes.count %> )
+    </h4>
+
+    <div class="p-4 my-4  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <h2>Post content</h2>
+      <a href="#">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white"><%=@post.title %></h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%=@post.text %></p>
+
+      <%= form_with model: Like, url: user_post_likes_url(@user, @post) , class: 'like-form', method: :post do |f| %>
+      <%= f.submit "Give like", class: "rounded-lg py-3 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" %>
+      <% end %>
+
+      <div class=" bg-white rounded-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel"
+        aria-labelledby="services-tab">
+        <h2 class="mb-5 text-xl font-extrabold tracking-tight text-white dark:text-white">Comments</h2>
+
+        <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
+          <% @post.comments.includes(:user).each do |cmt| %>
+
+          <li class="flex space-x-2">
+
+            <svg class="flex-shrink-0 w-4 h-4 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-light leading-tight"><%=cmt.user.name%>: <%= cmt.text %></span>
+            <%= button_to 'Delete comment', user_post_comment_path(@user, @post, cmt), method: :delete, class: 'delete-btn' %>
+          </li>
+          <% end %>
+
+        </ul>
+
+        <div class="w-2/3 my-12">
+
+          <%= form_with url: user_post_comments_url(@user, @post), method: :post, local: true, scope: :comment do |f| %>
+          <div class="d-flex">
+            <div class="comment-area">
+              <%= f.text_field :text, class:"block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", placeholder:"Add your comment...", required:true %>
+            </div>
+            <div class="m-4">
+
+              <%= f.submit "Create comment",class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+
+      </div>
     </div>
-    <%= link_to 'Back to posts', posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
   </div>
+
+
+</div>
+</div>
 </div>

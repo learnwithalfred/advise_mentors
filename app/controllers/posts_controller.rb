@@ -1,69 +1,52 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  # before_action :authenticate_user!
+  # load_and_authorize_resource
 
-  # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @user = User.includes(:posts).find(params[:user_id])
+    @posts = @user.posts
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
-  # GET /posts/1 or /posts/1.json
-  def show; end
+  def show
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:id])
+    @comments = Comment.where(posts_id: params[:id])
+  end
 
-  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # GET /posts/1/edit
-  def edit; end
-
-  # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(strong_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      flash[:success] = 'Post saved!'
+      redirect_to user_path(current_user.id)
+    else
+      flash.now[:error] = 'Please fill all fields'
+      render :new, status: 422
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
-  def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy
+    Post.destroy(params[:id])
+    redirect_to user_path(current_user)
+    flash[:success] = 'The post was successfully destroyed.'
+  end
 
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  rescue_from CanCan::AccessDenied do
+    redirect_to '/sign_in'
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def post_params
-    params.require(:post).permit(:title, :text, :likes_count, :comments_count, :author_id)
+  def strong_params
+    params.require(:post).permit(:title, :text)
   end
 end
