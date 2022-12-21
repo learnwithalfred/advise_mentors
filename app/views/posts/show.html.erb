@@ -53,7 +53,7 @@
           <%= form_with url: user_post_comments_url(@user, @post), method: :post, local: true, scope: :comment do |f| %>
           <div class="d-flex">
             <div class="comment-area">
-              <%= f.text_field :text, class:"block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", placeholder:"Add your comment...", required:true %>
+              <%= f.text_field :text, class:"block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full  text-gray-900", placeholder:"Add your comment...", required:true %>
             </div>
             <div class="m-4">
 

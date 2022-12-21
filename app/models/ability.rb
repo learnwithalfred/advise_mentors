@@ -2,9 +2,11 @@
 #   include CanCan::Ability
 
 #   def initialize(user)
-#     can :manage, :all if user.admin?
+#     return unless user.present?
 
+#     can %i[read create], Post
 #     can :destroy, Post, user: user
-#     can :destroy, Comment, user:
+#     can :destroy, Comment, user:user
+#     can :manage, :all if user.admin?
 #   end
 # end

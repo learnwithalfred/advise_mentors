@@ -5,7 +5,7 @@
       Mentors List
     </h1>
     <% @users.each_with_index do |user, index| %>
-          <%= link_to user_path(user.id) do %>
+    <%= link_to user_path(user.id) do %>
 
     <li class="py-3 sm:py-4 list-none">
       <div class="flex items-center">
@@ -22,11 +22,11 @@
           </p>
         </div>
         <div class="inline-flex items-center text-base font-semibold text-white dark:text-white">
-           Number of Post: <b><%= user.post_counter %></b>
+          Number of Post: <b><%= user.post_counter %></b>
         </div>
       </div>
     </li>
-              <% end %>
+    <% end %>
 
     <hr>
     <% end %>

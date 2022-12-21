@@ -23,8 +23,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(strong_params)
-
+    @post = Post.new(strong_params)
+    @post.author_id = current_user.id
     if @post.save
       flash[:success] = 'Post saved!'
       redirect_to user_path(current_user.id)
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   end
 
   rescue_from CanCan::AccessDenied do
-    redirect_to '/sign_in'
+    redirect_to '/'
   end
 
   private

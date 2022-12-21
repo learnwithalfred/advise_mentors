@@ -1,11 +1,11 @@
 <div class="mx-auto md:w-2/3 w-full"><!-- Add new post -->
   <div class="post-wrapper">
     <%= form_with(model: like, class: "contents") do |form| %>
-   <%= form.hidden_field :post_id %>
+    <%= form.hidden_field :post_id %>
 
-<div class="inline">
-    <%= form.submit "Like post", class: "rounded-lg py-3 px-5 bg-pink-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+    <div class="inline">
+      <%= form.submit "Like post", class: "rounded-lg py-3 px-5 bg-pink-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
     <% end %>
   </div>
 </div>
