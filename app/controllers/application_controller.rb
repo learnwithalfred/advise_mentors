@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   respond_to :html, :json
   protect_from_forgery with: :exception
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
