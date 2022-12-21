@@ -42,10 +42,7 @@
                 clip-rule="evenodd"></path>
             </svg>
             <span class="font-light leading-tight"><%=cmt.user.name%>: <%= cmt.text %></span>
-            <% if can? :manage, Comment %>
             <%= button_to 'Delete comment', user_post_comment_path(@user, @post, cmt), method: :delete, class: 'delete-btn' %>
-            <% end %>
-
           </li>
           <% end %>
 
