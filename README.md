@@ -35,8 +35,7 @@ To get a local copy up and running follow these simple example steps.
   cd advise_mentors
   bundle install
   yarn install
-  rails db:create
-  rails db:migrate
+  rails db:setup
   bin/dev
 
 👤 **Alfred Boateng**
