@@ -2,7 +2,7 @@
 
 ![Advise Mentors](advise_mentors.png)
 
-> The Advise Mentors is a classic example of a blog website. We created a fully functional website that show the list of posts and empower readers to interact with them by adding comments and liking posts
+> The Advise Mentors is a classic example of a blog website. We created a fully functional website that show the list of posts and empower readers to interact with them by adding comments and liking posts.
 
 ## Built With
 
